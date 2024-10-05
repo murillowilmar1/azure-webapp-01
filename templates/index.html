@@ -3,12 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Aplicación en Azure</title>
+    <title>Lista de Empleados</title>
 </head>
 <body>
-    <h1>¡Hola desde Flask, Azure App Service y GitHub!</h1>
-    <h2>Se creara  una app para aplicativo Machine learning</h2>
-    <p>Esta es una aplicación web desplegada en Azure con Python 3.11.</p>
-
+    <h1>Lista de Empleados</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Cargo</th>
+            <th>Salario</th>
+        </tr>
+        {% for empleado in empleados %}
+        <tr>
+            <td>{{ empleado.ID }}</td>
+            <td>{{ empleado.Nombre }}</td>
+            <td>{{ empleado.Edad }}</td>
+            <td>{{ empleado.Cargo }}</td>
+            <td>{{ empleado.Salario }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
