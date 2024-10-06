@@ -7,7 +7,7 @@ app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 def http_request(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    name = req.params.get('name')
+    name = req.params.get('name2')
     if not name:
         try:
             req_body = req.get_json()
