@@ -1,0 +1,33 @@
+name: Simple Pipeline with Dependency Installation and Commit Check
+
+on:
+  push:
+    branches:
+      - main  # Ejecuta el pipeline cuando se hace un push a la rama principal
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Clona el repositorio
+    - name: 'Checkout code'
+      uses: actions/checkout@v4
+
+    # 2. Instala las dependencias del proyecto (requirements.txt)
+    - name: 'Install dependencies'
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+
+    # 3. Verifica que el último commit tenga un comentario
+    - name: 'Check commit message'
+      run: |
+        commit_message=$(git log -1 --pretty=%B)
+        if [ -z "$commit_message" ]; then
+          echo "Error: El commit debe tener un comentario."
+          exit 1
+        else
+          echo "Commit válido con mensaje: $commit_message"
+        fi
